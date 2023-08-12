@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.AssessmentDetails">
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="418dp"
+        android:layout_height="327dp"
+        android:layout_marginTop="4dp"
+        android:background="#03A9F4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/courseIdTextView"
+                android:layout_width="258dp"
+                android:layout_height="43dp"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:text="Course id assessment will belong to: "
+                android:textColor="#0E0707"></TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="Assessment Title"
+                    android:textColor="#090505"></TextView>
+
+                <EditText
+                    android:id="@+id/assessmentTitleText"
+                    android:layout_width="302dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:hint="Enter title"
+                    android:inputType="text"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:text="Start Date"
+                    android:textColor="#0C0606"></TextView>
+
+                <TextView
+                    android:id="@+id/assessmentStartDate"
+                    android:layout_width="335dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:inputType="date"
+                    android:padding="5dp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:text="End Date"
+                    android:textColor="#0C0606"></TextView>
+
+                <TextView
+                    android:id="@+id/assessmentEndDate"
+                    android:layout_width="363dp"
+                    android:layout_height="71dp"
+                    android:layout_margin="5dp"
+                    android:inputType="date"
+                    android:padding="5dp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:text="Assessment type"
+                    android:textColor="#090404"></TextView>
+
+                <RadioGroup
+                    android:id="@+id/typeRadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/objectiveRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:text="Objective"></RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/performanceRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:text="Performance"></RadioButton>
+
+                </RadioGroup>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

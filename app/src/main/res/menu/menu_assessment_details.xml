@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Save Assessment"
+        android:id="@+id/saveAssessment"></item>
+    <item android:title="Get Notified of Assessment Start"
+        android:id="@+id/notifyAssessmentStart"></item>
+    <item android:title="Get Notified of Assessment End"
+        android:id="@+id/notifyAssessmentEnd"></item>
+    <item android:title="Delete Assessment"
+        android:id="@+id/deleteAssessment"></item>
+</menu>
