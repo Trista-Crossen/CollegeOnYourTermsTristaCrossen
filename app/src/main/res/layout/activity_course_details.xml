@@ -8,8 +8,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="414dp"
-        android:layout_height="220dp"
+        android:layout_width="410dp"
+        android:layout_height="389dp"
         android:background="#03A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -143,9 +143,9 @@
 
 
             <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="66dp"
@@ -363,8 +363,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/assessmentRecyclerView"
-        android:layout_width="261dp"
-        android:layout_height="188dp"
+        android:layout_width="275dp"
+        android:layout_height="91dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.331"
@@ -385,8 +385,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCourseNotes"
-        android:layout_width="265dp"
-        android:layout_height="157dp"
+        android:layout_width="268dp"
+        android:layout_height="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.342"
