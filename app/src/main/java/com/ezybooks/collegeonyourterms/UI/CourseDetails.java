@@ -28,7 +28,6 @@ import com.ezybooks.collegeonyourterms.R;
 import com.ezybooks.collegeonyourterms.database.Repository;
 import com.ezybooks.collegeonyourterms.entities.Assessment;
 import com.ezybooks.collegeonyourterms.entities.Course;
-import com.ezybooks.collegeonyourterms.entities.CourseNote;
 import com.ezybooks.collegeonyourterms.entities.Term;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,7 +46,6 @@ public class CourseDetails extends AppCompatActivity {
     Course currentCourse;
     int courseId;
     int termId;
-    int noteId;
     String title;
     String startDateString;
     String endDateString;
@@ -65,6 +63,7 @@ public class CourseDetails extends AppCompatActivity {
     EditText editInstructorEmail;
     EditText editInstructorPhone;
     EditText editNoteText;
+    TextView notesTextView;
     DatePickerDialog.OnDateSetListener startDatePicker;
     DatePickerDialog.OnDateSetListener endDatePicker;
     final Calendar myCalendarStart = Calendar.getInstance();
@@ -82,7 +81,6 @@ public class CourseDetails extends AppCompatActivity {
 
         courseId = getIntent().getIntExtra("courseId", -1);
         termId = getIntent().getIntExtra("termId", -1);
-        noteId = getIntent().getIntExtra("noteId", -1);
         termIdTextView = findViewById(R.id.termIdTextView);
         editTitle = findViewById(R.id.titletext);
         editStartDate = findViewById(R.id.courseStartDate);
@@ -92,6 +90,7 @@ public class CourseDetails extends AppCompatActivity {
         editInstructorEmail = findViewById(R.id.editTextEmailAddress);
         editInstructorPhone = findViewById(R.id.editTextPhone);
         editNoteText = findViewById(R.id.editTextTextMultiLine2);
+        notesTextView = findViewById(R.id.courseNoteTextView);
         title = getIntent().getStringExtra("title");
         startDateString = getIntent().getStringExtra("startDate");
         endDateString = getIntent().getStringExtra("endDate");
@@ -99,6 +98,7 @@ public class CourseDetails extends AppCompatActivity {
         instructorName = getIntent().getStringExtra("instructorName");
         instructorPhone = getIntent().getStringExtra("instructorPhone");
         instructorEmail = getIntent().getStringExtra("instructorEmail");
+        courseNote = getIntent().getStringExtra("courseNote");
         termIdTextView.setText("Term Id " + termId);
         editTitle.setText(title);
         if(courseId == -1){
@@ -194,6 +194,7 @@ public class CourseDetails extends AppCompatActivity {
         editInstructorName.setText(instructorName);
         editInstructorPhone.setText(instructorPhone);
         editInstructorEmail.setText(instructorEmail);
+        editNoteText.setText(courseNote);
 
         /**This method sets the click listening for the floating action button.*/
         fab.setOnClickListener(new View.OnClickListener() {
@@ -219,18 +220,7 @@ public class CourseDetails extends AppCompatActivity {
         }
         assessmentAdapter.setAssessments(associatedAssessments);
 
-        RecyclerView notesRecyclerView = findViewById(R.id.recyclerViewCourseNotes);
-        repository = new Repository(getApplication());
-        final NoteAdapter noteAdapter = new NoteAdapter(this);
-        notesRecyclerView.setAdapter(noteAdapter);
-        notesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<CourseNote> associatedNotes = new ArrayList<>();
-        for(CourseNote c : repository.getAllNotes()){
-            if(c.getCourseId() == courseId){
-                associatedNotes.add(c);
-            }
-        }
-        noteAdapter.setNotes(associatedNotes);
+        notesTextView.setText(courseNote);
     }
 
     private void updateLabelStart(){
@@ -275,6 +265,7 @@ public class CourseDetails extends AppCompatActivity {
             instructorName = editInstructorName.getText().toString();
             instructorEmail = editInstructorEmail.getText().toString();
             instructorPhone = editInstructorPhone.getText().toString();
+            courseNote = editNoteText.getText().toString();
             Date courseStartDate;
             Date courseEndDate;
             String myFormat = "MM/dd/yy";
@@ -311,7 +302,7 @@ public class CourseDetails extends AppCompatActivity {
                             this.finish();
                         }
                         else{
-                            course = new Course(courseId, title, startDateString, endDateString, status, instructorName, instructorEmail, instructorPhone, termId);
+                            course = new Course(courseId, title, startDateString, endDateString, status, instructorName, instructorEmail, instructorPhone, courseNote, termId);
                             repository.insert(course);
                             this.finish();
                         }
@@ -323,7 +314,7 @@ public class CourseDetails extends AppCompatActivity {
                         Toast.makeText(CourseDetails.this, "Start date must be before end date.", Toast.LENGTH_LONG).show();
                         this.finish();
                     }else{
-                        course = new Course(courseId, title, startDateString, endDateString, status, instructorName, instructorEmail, instructorPhone, termId);
+                        course = new Course(courseId, title, startDateString, endDateString, status, instructorName, instructorEmail, instructorPhone, courseNote, termId);
                         repository.update(course);
                         this.finish();
                     }
@@ -344,18 +335,6 @@ public class CourseDetails extends AppCompatActivity {
             sentIntent.setType("text/plain");
             Intent shareIntent = Intent.createChooser(sentIntent, null);
             startActivity(shareIntent);
-
-            courseNote = editNoteText.getText().toString();
-            CourseNote note;
-            if(noteId == -1){
-                if(repository.getAllNotes().size() == 0) noteId = 1;
-                else noteId = repository.getAllNotes().get(repository.getAllNotes().size() - 1).getNoteId() + 1;
-
-                note = new CourseNote(noteId, courseId, courseNote);
-                repository.insert(note);
-                this.finish();
-            }
-
 
             return true;
         }

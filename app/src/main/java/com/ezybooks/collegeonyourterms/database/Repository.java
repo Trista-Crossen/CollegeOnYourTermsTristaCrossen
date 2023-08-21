@@ -4,11 +4,9 @@ import android.app.Application;
 
 import com.ezybooks.collegeonyourterms.dao.AssessmentDAO;
 import com.ezybooks.collegeonyourterms.dao.CourseDAO;
-import com.ezybooks.collegeonyourterms.dao.NoteDAO;
 import com.ezybooks.collegeonyourterms.dao.TermDAO;
 import com.ezybooks.collegeonyourterms.entities.Assessment;
 import com.ezybooks.collegeonyourterms.entities.Course;
-import com.ezybooks.collegeonyourterms.entities.CourseNote;
 import com.ezybooks.collegeonyourterms.entities.Term;
 
 import java.util.List;
@@ -20,14 +18,11 @@ public class Repository {
     private AssessmentDAO mAssessmentDAO;
     private CourseDAO mCourseDAO;
     private TermDAO mTermDAO;
-    private NoteDAO mNoteDAO;
 
     private List<Assessment> mAllAssessments;
     private List<Assessment> mAssociatedAssessments;
     private List<Course> mAllCourses;
     private List<Term> mAllTerms;
-    private List<CourseNote> mAllNotes;
-    private List<CourseNote> mAssociatedNotes;
 
     private static int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -39,7 +34,6 @@ public class Repository {
         mAssessmentDAO = db.assessmentDAO();
         mCourseDAO = db.courseDAO();
         mTermDAO = db.termDAO();
-        mNoteDAO = db.noteDAO();
     }
 
     /**This method returns a list of terms.
@@ -234,60 +228,6 @@ public class Repository {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**This method inserts a new course note into the list of course notes.
-     * @param note */
-    public void insert(CourseNote note) {
-        databaseExecutor.execute(()->{
-            mNoteDAO.insert(note);
-        });
-        try {
-            Thread.sleep(1000);
-        }catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
-    }
-    /**This method returns a list of all course notes.
-     * @return mAllNotes*/
-    public List<CourseNote> getAllNotes(){
-        databaseExecutor.execute(()->{
-            mAllNotes = mNoteDAO.getAllNotes();
-        });
-        try {
-            Thread.sleep(1000);
-        }catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
-        return mAllNotes;
-    }
-
-    /**This method returns a list of associated notes based on course id.
-     * @param courseId
-     * @return mAssociatedNotes*/
-    public List<CourseNote> getAssociatedNotes(int courseId){
-        databaseExecutor.execute(()->{
-            mAssociatedNotes = mNoteDAO.getAssociatedNotes(courseId);
-        });
-        try {
-            Thread.sleep(1000);
-        }catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
-        return mAssociatedNotes;
-    }
-
-    /**This method deletes course notes.
-     * @param note */
-    public void delete(CourseNote note){
-        databaseExecutor.execute(()->{
-            mNoteDAO.delete(note);
-        });
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e){
             throw new RuntimeException(e);
         }
     }

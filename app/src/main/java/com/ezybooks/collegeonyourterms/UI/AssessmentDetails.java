@@ -77,6 +77,19 @@ public class AssessmentDetails extends AppCompatActivity {
         editTitle.setText(title);
         editStartDate.setText(startDateString);
         editEndDate.setText(endDateString);
+
+        if(assessmentId == -1){
+            editStartDate.setText("Click to pick date.");
+        }
+        else {
+            editStartDate.setText(getIntent().getStringExtra("startDate"));
+        }
+        if(assessmentId == -1){
+            editEndDate.setText("Click to pick date.");
+        }
+        else{
+            editEndDate.setText(getIntent().getStringExtra("endDate"));
+        }
         String myFormat = "MM/dd/yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
@@ -109,7 +122,7 @@ public class AssessmentDetails extends AppCompatActivity {
                 Date date;
 
                 String info = editStartDate.getText().toString();
-                if(info.equals("")) info = "08/01/23";
+                if(info.equals("Click to pick date.")) info = "08/01/23";
                 try {
                     myCalendarStart.setTime(sdf.parse(info));
                 } catch (ParseException e) {
@@ -127,7 +140,7 @@ public class AssessmentDetails extends AppCompatActivity {
                 Date date;
 
                 String info = editEndDate.getText().toString();
-                if(info.equals("")) info = "08/01/23";
+                if(info.equals("Click to pick date.")) info = "08/01/23";
                 try {
                     myCalendarEnd.setTime(sdf.parse(info));
                 } catch (ParseException e) {
@@ -208,7 +221,7 @@ public class AssessmentDetails extends AppCompatActivity {
                     this.finish();
                 }
                 else {
-                    if(!title.equals("") && !startDateString.equals("") && !endDateString.equals("") && !type.equals("")){
+                    if(!title.equals("") && !startDateString.equals("Click to pick date.") && !endDateString.equals("Click to pick date.") && !type.equals("")){
                         if (!startDate.before(endDate)) {
                             Toast.makeText(AssessmentDetails.this, "Start date must be before end date.", Toast.LENGTH_LONG).show();
                         }
@@ -225,7 +238,7 @@ public class AssessmentDetails extends AppCompatActivity {
                 }
             }
             else{
-                if(!title.equals("") && !startDateString.equals("") && !endDateString.equals("") && !type.equals("")){
+                if(!title.equals("") && !startDateString.equals("Click to pick date.") && !endDateString.equals("") && !type.equals("Click to pick date.")){
                     if (!startDate.before(endDate)) {
                         Toast.makeText(AssessmentDetails.this, "Start date must be before end date.", Toast.LENGTH_LONG).show();
                         this.finish();

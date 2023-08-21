@@ -77,7 +77,7 @@ public class TermList extends AppCompatActivity {
             repository.insert(term);
 
 
-            Course course = new Course(0, "Stats and Prob", "03/01/23", "04/15/23", "complete", "Dr. Dolittle", "probAndstats@college.edu", "555-555-5555", 1);
+            Course course = new Course(0, "Stats and Prob", "03/01/23", "04/15/23", "complete", "Dr. Dolittle", "probAndstats@college.edu", "555-555-5555", "", 1);
             repository.insert(course);
 
 

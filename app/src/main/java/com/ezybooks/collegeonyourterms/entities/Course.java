@@ -18,6 +18,7 @@ public class Course {
     private String instructorName;
     private String instructorEmail;
     private String instructorPhone;
+    private String note;
     private int termId;
 
     /**This is the constructor of the Course class.
@@ -30,7 +31,7 @@ public class Course {
      * @param instructorEmail
      * @param instructorPhone
      * @param termId */
-    public Course(int courseId, String courseTitle, String startDate, String endDate, String status, String instructorName, String instructorEmail, String instructorPhone, int termId) {
+    public Course(int courseId, String courseTitle, String startDate, String endDate, String status, String instructorName, String instructorEmail, String instructorPhone, String note, int termId) {
         this.courseId = courseId;
         this.courseTitle = courseTitle;
         this.startDate = startDate;
@@ -39,6 +40,7 @@ public class Course {
         this.instructorName = instructorName;
         this.instructorEmail = instructorEmail;
         this.instructorPhone = instructorPhone;
+        this.note = note;
         this.termId = termId;
     }
 
@@ -137,6 +139,14 @@ public class Course {
      * @param instructorPhone */
     public void setInstructorPhone(String instructorPhone) {
         this.instructorPhone = instructorPhone;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     /**This method returns the term id associated with the course being viewed or made.
